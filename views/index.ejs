@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>hamberger | 중고거래</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header">
+      <a href="/">홈</a>
+      <% if (me) { %>
+        <span class="spacer"></span>
+        <span>안녕하세요, <strong><%= me.nickname %></strong>님</span>
+        <a class="btn" href="/items/new">상품등록</a>
+        <% if (me.role === 'admin') { %><a class="btn" href="/admin/items">관리자</a><% } %>
+        <form method="post" action="/api/auth/logout" style="display:inline"><button class="btn" type="submit">로그아웃</button></form>
+      <% } else { %>
+        <span class="spacer"></span>
+        <a class="btn" href="/register">회원가입</a>
+        <a class="btn" href="/login">로그인</a>
+      <% } %>
+    </nav>
+
+    <h1 style="margin:8px 0 16px">최신 상품</h1>
+    <div class="grid">
+      <% items.forEach((it)=>{ %>
+        <a class="card" href="/items/<%= it.id %>">
+          <% if (it.image_url) { %>
+            <img src="<%= it.image_url %>" alt="item image">
+          <% } else { %>
+            <img src="https://dummyimage.com/800x600/0e1117/aaa&text=No+Image" alt="">
+          <% } %>
+          <div class="title"><%= it.title %>
+            <span class="badge <%= it.status %>"><%= it.status %></span>
+          </div>
+          <div class="price"><%= it.price.toLocaleString() %>원</div>
+          <div style="color:var(--muted)">판매자: <%= it.seller_nickname %></div>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</body>
+
+
+</html>

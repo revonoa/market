@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8"><title><%= item.title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header">
+      <a href="/">← 메인</a>
+      <a class="btn" href="/chats">채팅</a>
+    </nav>
+
+    <div class="detail">
+      <div>
+        <% if (item.image_url) { %>
+          <img src="<%= item.image_url %>" alt="">
+        <% } %>
+      </div>
+      <div class="stack">
+        <h1 style="margin:0"><%= item.title %> <span class="badge <%= item.status %>"><%= item.status %></span></h1>
+        <div class="price" style="font-size:22px"><%= item.price.toLocaleString() %>원</div>
+        <div style="color:var(--muted)">판매자: <%= item.seller_nickname %></div>
+
+        <div>
+          <% if (me && me.id !== item.seller_id) { %>
+            <form method="post" action="/api/favorites/<%= item.id %>/toggle" style="display:inline">
+              <button class="btn brand" type="submit">♥ 찜하기 / 해제</button>
+            </form>
+            <form method="post" action="/api/chats/start" style="display:inline">
+              <input type="hidden" name="sellerId" value="<%= item.seller_id %>">
+              <input type="hidden" name="itemId" value="<%= item.id %>">
+              <button class="btn" type="submit">💬 판매자와 채팅</button>
+            </form>
+          <% } else if (!me) { %>
+            <a class="btn" href="/login">로그인하고 찜/채팅</a>
+          <% } else { %>
+            <span style="color:var(--muted)">내가 올린 상품</span>
+          <% } %>
+        </div>
+
+        <div>
+          <h3>설명</h3>
+          <pre class="input" style="white-space:pre-wrap"><%= item.description %></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+</html>

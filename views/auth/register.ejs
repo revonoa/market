@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><title>회원가입 | hamberger</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header">
+      <a href="/">← 메인</a>
+      <span class="spacer"></span>
+      <a class="btn" href="/login">로그인</a>
+    </nav>
+
+    <h1 style="margin:8px 0 16px">회원가입</h1>
+
+    <form method="post" action="/api/auth/register" class="stack" style="max-width:520px">
+      <label class="stack">
+        <span>이메일</span>
+        <input class="input" name="email" type="email" required placeholder="you@example.com">
+      </label>
+      <label class="stack">
+        <span>비밀번호</span>
+        <input class="input" name="password" type="password" minlength="8" required placeholder="8자 이상">
+      </label>
+      <label class="stack">
+        <span>닉네임</span>
+        <input class="input" name="nickname" required placeholder="마켓 닉네임">
+      </label>
+      <div class="row" style="justify-content:flex-end">
+        <button class="btn brand" type="submit">회원가입</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

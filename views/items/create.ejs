@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><title>상품 등록 | hamberger</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header">
+      <a href="/">← 메인</a>
+      <span class="spacer"></span>
+      <a class="btn" href="/chats">채팅</a>
+    </nav>
+
+    <h1 style="margin:8px 0 16px">상품 등록</h1>
+
+    <form method="post" action="/api/items" enctype="multipart/form-data" class="stack" style="max-width:720px">
+      <label class="stack">
+        <span>제목</span>
+        <input class="input" name="title" required placeholder="예: 아이패드 9세대 64GB">
+      </label>
+
+      <div class="row">
+        <label class="stack" style="flex:1">
+          <span>가격(원)</span>
+          <input class="input" name="price" type="number" min="0" required placeholder="예: 240000">
+        </label>
+        <label class="stack" style="flex:1">
+          <span>상태</span>
+          <select class="select" name="status">
+            <option value="on_sale">판매중</option>
+            <option value="reserved">예약중</option>
+            <option value="sold_out">판매완료</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="stack">
+        <span>설명</span>
+        <textarea class="textarea" name="description" rows="6" required placeholder="상세 상태, 구성품, 직거래/택배 등"></textarea>
+      </label>
+
+      <label class="stack">
+        <span>이미지(선택)</span>
+        <input class="input" type="file" name="image" accept="image/png,image/jpeg,image/webp">
+        <span style="color:var(--muted)">최대 5MB, jpg/png/webp</span>
+      </label>
+
+      <div class="row" style="justify-content:flex-end">
+        <button class="btn brand" type="submit">등록하기</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

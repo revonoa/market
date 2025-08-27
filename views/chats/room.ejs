@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title><%= otherNickname %> 님과의 채팅</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header">
+      <a href="/chats">← 목록</a>
+      <div class="spacer"></div>
+      <strong><%= otherNickname %></strong>
+    </nav>
+
+    <div class="chat-shell">
+      <div id="chat-root" data-chat-id="<%= chatId %>" data-me-id="<%= me && me.id %>"></div>
+      <div id="log" class="chat-log"></div>
+      <div class="chat-typing" id="typing" style="display:none"><%= otherNickname %> 님이 입력 중...</div>
+      <div class="chat-input">
+        <input id="text" class="input" type="text" placeholder="메시지 입력..." autocomplete="off" />
+        <button id="sendBtn" class="btn brand" type="button">전송</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/chat.js" defer></script>
+</body>
+
+</html>

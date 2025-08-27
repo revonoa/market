@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>채팅 목록</title>
+<style>
+body{font-family:system-ui;margin:24px}
+.chat{border:1px solid #ddd;border-radius:8px;padding:12px;margin:8px 0}
+a{text-decoration:none;color:inherit}
+</style></head>
+<body>
+  <p><a href="/">← 메인</a></p>
+  <h1>채팅</h1>
+  <% if (!chats.length) { %><p>진행 중인 채팅이 없습니다.</p><% } %>
+  <% chats.forEach(c => { %>
+    <a class="chat" href="/chats/<%= c.chatId %>">
+      <div><strong><%= c.otherNickname %></strong></div>
+      <div style="color:#666"><%= c.lastMessage || '메시지가 없습니다.' %></div>
+    </a>
+  <% }) %>
+</body></html>
